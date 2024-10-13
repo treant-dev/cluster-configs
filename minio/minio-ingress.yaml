@@ -18,4 +18,14 @@ spec:
               service:
                 name: minio-service
                 port:
+                  number: 43087
+    - host: s3.treant.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: minio-service
+                port:
                   number: 9000

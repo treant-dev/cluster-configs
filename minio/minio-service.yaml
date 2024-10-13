@@ -8,5 +8,7 @@ spec:
   ports:
     - port: 9000
       targetPort: 9000
+    - port: 43087
+      targetPort: 43087
   selector:
     app: minio
