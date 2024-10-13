@@ -5,9 +5,10 @@ metadata:
   namespace: prod
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/proxy-body-size: 0
 spec:
   rules:
-  - host: minio.treant.dev
+  - host: treant.dev  # fixme to minio.treant.dev after A record update
     http:
       paths:
       - path: /
