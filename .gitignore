@@ -1,0 +1,10 @@
+# OSX trash
+.DS_Store
+
+# IDE files / folders
+.idea/
+*.iml
+.vscode
+
+# User cluster configs
+.kubeconfig
