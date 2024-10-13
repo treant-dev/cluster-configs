@@ -8,7 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: 0
 spec:
   rules:
-  - host: treant.dev  # fixme to minio.treant.dev after A record update
+  - host: treant.dev
     http:
       paths:
       - path: /
