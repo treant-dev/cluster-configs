@@ -30,10 +30,14 @@ jobs:
         run: |
           kubectl apply -f namespace-prod.yaml
 
-      - name: Install Ingress Nginx controller
+      - name: Install Ingress Nginx controller and metallb for external IP
         run: |
           kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
           kubectl rollout status deployment/ingress-nginx-controller -n ingress-nginx --timeout=120s
+          kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml
+          kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml
+          kubectl apply -f ./metallb/metallb-configmap.yaml
+          
 
       - name: Install minio
         env:
