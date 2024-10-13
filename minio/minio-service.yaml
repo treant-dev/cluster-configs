@@ -4,9 +4,10 @@ metadata:
   name: minio-service
   namespace: prod
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
     - port: 9000
       targetPort: 9000
+      nodePort: 30009
   selector:
     app: minio
