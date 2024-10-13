@@ -22,9 +22,9 @@ spec:
             - server
             - /data
           env:
-            - name: MINIO_ACCESS_KEY
+            - name: MINIO_ROOT_USER
               value: "${MINIO_ACCESS_KEY}"
-            - name: MINIO_SECRET_KEY
+            - name: MINIO_ROOT_PASSWORD
               value: "${MINIO_SECRET_KEY}"
           ports:
             - containerPort: 9000
