@@ -7,8 +7,9 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: "/"
     nginx.ingress.kubernetes.io/proxy-body-size: "0"
 spec:
+  ingressClassName: nginx
   rules:
-  - host: treant.dev
+  - host: miniotreant.dev
     http:
       paths:
       - path: /

@@ -30,6 +30,11 @@ jobs:
         run: |
           kubectl apply -f namespace-prod.yaml
 
+      - name: Install Ingress Nginx controller
+        run: |
+          kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
+          kubectl rollout status deployment/ingress-nginx-controller -n ingress-nginx --timeout=120s
+
       - name: Install minio
         env:
           MINIO_ACCESS_KEY: ${{ secrets.MINIO_ACCESS_KEY }}
