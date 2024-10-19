@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Set up DNS
-chmod +x setup_dns.sh
-sudo ./setup_dns.sh
-
 # Disable swap
 swapoff -a
 sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
