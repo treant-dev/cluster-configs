@@ -17,16 +17,6 @@ EOF
 
 sudo sysctl --system
 
-# Uninstall old versions
-sudo yum remove docker \
-                  docker-client \
-                  docker-client-latest \
-                  docker-common \
-                  docker-latest \
-                  docker-latest-logrotate \
-                  docker-logrotate \
-                  docker-engine
-
 # Install required packages
 sudo yum install -y socat
 
