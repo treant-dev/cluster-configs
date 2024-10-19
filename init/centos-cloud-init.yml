@@ -4,6 +4,7 @@ package_upgrade: true
 
 packages:
   - git
+  - net-tools
 
 runcmd:
   - git clone https://github.com/treant-dev/cluster-configs.git
