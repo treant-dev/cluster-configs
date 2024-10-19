@@ -14,12 +14,10 @@ runcmd:
   # Make scripts executable
   - chmod +x centos-dns.sh
   - chmod +x centos-k8s.sh
-  - chmod +x setup-master.sh
 
   # Run the scripts
   - ./centos-dns.sh
   - ./centos-k8s.sh
-  - ./setup-master.sh
 
 # Set up output for cloud-init logging
 output:
