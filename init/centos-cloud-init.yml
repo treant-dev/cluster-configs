@@ -1,0 +1,25 @@
+package_update: true
+package_upgrade: true
+
+packages:
+  - git
+
+runcmd:
+  - git clone https://github.com/treant-dev/cluster-configs.git
+
+  # Change directory to the cloned repository
+  - cd cluster-configs/init/
+
+  # Make scripts executable
+  - chmod +x centos-dns.sh
+  - chmod +x centos-k8s.sh
+  - chmod +x setup-master.sh
+
+  # Run the scripts
+  - ./centos-dns.sh
+  - ./centos-k8s.sh
+  - ./setup-master.sh
+
+# Set up output for cloud-init logging
+output:
+  all: "| tee -a /var/log/cloud-init-output.log"
