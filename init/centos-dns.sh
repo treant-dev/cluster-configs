@@ -1,5 +1,6 @@
 #!/bin/bash
-
+# Restart NetworkManager to apply changes after yum upgrade / update
+sudo systemctl restart NetworkManager
 # Get the active connection name in NetworkManager, e.g., "Wired connection 1" or "eth0".
 # You can use 'nmcli connection show' to list all active connections if needed.
 CONNECTION_NAME=$(nmcli -t -f NAME connection show --active | head -n 1)
