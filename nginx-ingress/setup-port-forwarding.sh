@@ -4,12 +4,6 @@ sudo systemctl start iptables
 sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 30080 -m comment --comment "Redirect to k8s NodePort"
 sudo iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 30443 -m comment --comment "Redirect to k8s NodePort"
 
-# Delete blocking rules for k8s
-sudo iptables -D KUBE-EXTERNAL-SERVICES -p tcp --dport 30080 -m comment --comment "nginx-ingress/nginx-ingress:http has no endpoints" -j REJECT --reject-with icmp-port-unreachable
-sudo iptables -D KUBE-EXTERNAL-SERVICES -p tcp --dport 30443 -m comment --comment "nginx-ingress/nginx-ingress:https has no endpoints" -j REJECT --reject-with icmp-port-unreachable
-sudo iptables -D KUBE-SERVICES -p tcp --dport 80 -m comment --comment "nginx-ingress/nginx-ingress:http has no endpoints" -j REJECT --reject-with icmp-port-unreachable
-sudo iptables -D KUBE-SERVICES -p tcp --dport 443 -m comment --comment "nginx-ingress/nginx-ingress:https has no endpoints" -j REJECT --reject-with icmp-port-unreachable
-
 # Open other k8s ports
 sudo iptables -A INPUT -p tcp --dport 6443 -m comment --comment "Kubernetes API Server" -j ACCEPT
 
