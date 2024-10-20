@@ -6,7 +6,7 @@ NGINX_CONF_PATH="/etc/nginx/nginx.conf"
 
 sudo mv "$NGINX_CONF_PATH" "$NGINX_CONF_PATH.bak"
 
-sudo tee "NGINX_CONF_PATH" > /dev/null <<EOF
+sudo tee "$NGINX_CONF_PATH" > /dev/null <<EOF
 events {}
 
 http {
