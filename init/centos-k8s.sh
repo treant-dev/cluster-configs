@@ -1,4 +1,5 @@
 #!/bin/bash
+# yum install -y net-tools telnet socat yum-utils
 
 # Disable swap
 swapoff -a
@@ -17,11 +18,7 @@ EOF
 
 sudo sysctl --system
 
-# Install required packages
-sudo yum install -y socat
-
 # Set up the repository
-sudo yum install -y yum-utils
 sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 # Install Docker Engine
 sudo yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin

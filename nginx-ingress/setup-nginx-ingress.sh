@@ -20,5 +20,8 @@ kubectl apply -f https://raw.githubusercontent.com/nginxinc/kubernetes-ingress/$
 kubectl patch svc nginx-ingress -n nginx-ingress --type='json' -p="[{'op': 'replace', 'path': '/spec/ports/0/nodePort', 'value': 30080}]"
 kubectl patch svc nginx-ingress -n nginx-ingress --type='json' -p="[{'op': 'replace', 'path': '/spec/ports/1/nodePort', 'value': 30443}]"
 
+kubectl apply -f https://raw.githubusercontent.com/nginxinc/kubernetes-ingress/$NGINX_VERSION/deployments/common/nginx-config.yaml
+kubectl apply -f https://raw.githubusercontent.com/nginxinc/kubernetes-ingress/$NGINX_VERSION/deployments/common/ingress-class.yaml
+
 # Apply Deployment
 kubectl apply -f https://raw.githubusercontent.com/nginxinc/kubernetes-ingress/$NGINX_VERSION/deployments/deployment/nginx-ingress.yaml
