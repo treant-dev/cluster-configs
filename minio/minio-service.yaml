@@ -2,11 +2,24 @@ apiVersion: v1
 kind: Service
 metadata:
   name: minio-service
-  namespace: prod
+  namespace: minio
 spec:
   type: ClusterIP
   ports:
     - port: 43087
       targetPort: 43087
+  selector:
+    app: minio
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: s3-service
+  namespace: minio
+spec:
+  type: ClusterIP
+  ports:
+    - port: 9000
+      targetPort: 9000
   selector:
     app: minio
