@@ -1,0 +1,39 @@
+name: Cluster init manual
+
+on:
+  workflow_dispatch:
+    secrets:
+      KUBECONFIG:
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install kubectl
+        run: |
+          curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+          chmod +x ./kubectl
+          sudo mv ./kubectl /usr/local/bin/kubectl
+
+      - name: Configure kubectl
+        run: |
+          mkdir -p $HOME/.kube
+          echo "$KUBECONFIG" > $HOME/.kube/config
+
+      - name: Create prod namespace
+        run: |
+          kubectl apply -f namespace-prod.yaml
+
+      - name: Install Ingress Nginx controller
+        run: |
+          kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
+          kubectl rollout status deployment/ingress-nginx-controller -n ingress-nginx --timeout=120s     
+          kubectl apply -f ./ingress-nginx/ingress-nginx-service.yaml
+
+      - name: Install cert-manager
+        run: |
+          kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.16.1/cert-manager.yaml
