@@ -23,6 +23,7 @@ jobs:
         run: |
           mkdir -p $HOME/.kube
           echo "$KUBECONFIG" > $HOME/.kube/config
+          kubectl get nodes
 
       - name: Install minio
         env:
