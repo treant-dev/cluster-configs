@@ -36,3 +36,8 @@ jobs:
       - name: Install cert-manager
         run: |
           kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.16.1/cert-manager.yaml
+
+      - name: Add certificates issuers
+        run: |
+          kubectl apply -f ./cert-manager/staging-issuer.yaml
+          kubectl apply -f ./cert-manager/prod-issuer.yaml
