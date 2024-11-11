@@ -7,6 +7,11 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - minio.treant.dev
+        - s3.treant.dev
+      secretName: letsencrypt-staging
   rules:
     - host: minio.treant.dev
       http:
