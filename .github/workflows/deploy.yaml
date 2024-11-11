@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+    secrets:
+      KUBECONFIG:
+        required: true
 
 jobs:
   deploy:
