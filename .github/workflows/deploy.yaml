@@ -5,9 +5,7 @@ on:
     branches:
       - main
   workflow_dispatch:
-    secrets:
-      KUBECONFIG:
-        required: true
+
 
 jobs:
   deploy:
@@ -26,7 +24,7 @@ jobs:
       - name: Configure kubectl
         run: |
           mkdir -p $HOME/.kube
-          echo "$KUBECONFIG" > $HOME/.kube/config
+          echo "$KUBE_CONFIG" > $HOME/.kube/config
           kubectl get nodes
 
       - name: Install minio
