@@ -25,7 +25,7 @@ spec:
               service:
                 name: minio-service
                 port:
-                  number: 43087
+                  number: 9090
     - host: s3.treant.dev
       http:
         paths:

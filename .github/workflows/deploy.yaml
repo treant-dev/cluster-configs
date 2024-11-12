@@ -34,6 +34,7 @@ jobs:
           MINIO_ACCESS_KEY: ${{ secrets.MINIO_ACCESS_KEY }}
           MINIO_SECRET_KEY: ${{ secrets.MINIO_SECRET_KEY }}
         run: |
+          kubectl apply -f ./minio/minio-namespace.yaml
           kubectl apply -f ./minio/minio-persistence-volume.yaml
           kubectl apply -f ./minio/minio-deployment.yaml
           kubectl apply -f ./minio/minio-service.yaml

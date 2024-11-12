@@ -28,7 +28,7 @@ spec:
               value: "${MINIO_SECRET_KEY}"
           ports:
             - containerPort: 9000
-            - containerPort: 43087
+            - containerPort: 9090
           volumeMounts:
             - name: storage
               mountPath: "/data"
