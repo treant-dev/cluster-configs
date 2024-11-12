@@ -3,18 +3,8 @@ kind: Ingress
 metadata:
   name: minio-ingress
   namespace: minio
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-staging
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
-
 spec:
   ingressClassName: nginx
-  tls:
-    - hosts:
-        - minio.treant.dev
-        - s3.treant.dev
-      secretName: minio-tls-secret
   rules:
     - host: minio.treant.dev
       http:
