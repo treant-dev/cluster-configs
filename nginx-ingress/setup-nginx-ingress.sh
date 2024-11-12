@@ -2,26 +2,12 @@
 # Install guide from official documentation
 # https://docs.nginx.com/nginx-ingress-controller/installation
 
-NGINX_VERSION="v3.7.0"
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 
-# Create `nginx-ingress` NameSpace and Service Account
-kubectl apply -f https://raw.githubusercontent.com/nginxinc/kubernetes-ingress/$NGINX_VERSION/deployments/common/ns-and-sa.yaml
+helm install ingress-nginx ingress-nginx/ingress-nginx \
+  --namespace ingress-nginx \
+  --create-namespace \
+  --set controller.service.type=NodePort \
+  --set controller.service.nodePorts.http=30080 \
+  --set controller.service.nodePorts.https=30443
 
-# Role-Based Access Control (RBAC) creation
-kubectl apply -f https://raw.githubusercontent.com/nginxinc/kubernetes-ingress/$NGINX_VERSION/deployments/rbac/rbac.yaml
-
-# Create Custom Resource Definitions (CRDs)
-kubectl apply -f https://raw.githubusercontent.com/nginxinc/kubernetes-ingress/$NGINX_VERSION/deploy/crds.yaml
-
-# Create NodePort Service
-kubectl apply -f https://raw.githubusercontent.com/nginxinc/kubernetes-ingress/$NGINX_VERSION/deployments/service/nodeport.yaml
-
-# Change nodePorts to 30080 for & 30443 for https
-kubectl patch svc nginx-ingress -n nginx-ingress --type='json' -p="[{'op': 'replace', 'path': '/spec/ports/0/nodePort', 'value': 30080}]"
-kubectl patch svc nginx-ingress -n nginx-ingress --type='json' -p="[{'op': 'replace', 'path': '/spec/ports/1/nodePort', 'value': 30443}]"
-
-kubectl apply -f https://raw.githubusercontent.com/nginxinc/kubernetes-ingress/$NGINX_VERSION/deployments/common/nginx-config.yaml
-kubectl apply -f https://raw.githubusercontent.com/nginxinc/kubernetes-ingress/$NGINX_VERSION/deployments/common/ingress-class.yaml
-
-# Apply Deployment
-kubectl apply -f https://raw.githubusercontent.com/nginxinc/kubernetes-ingress/$NGINX_VERSION/deployments/deployment/nginx-ingress.yaml

@@ -24,6 +24,9 @@ runcmd:
   - ./centos-dns.sh
   - ./centos-k8s.sh
 
+  # Install helm
+  - curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
 # Set up output for cloud-init logging
 output:
   all: "| tee -a /var/log/cloud-init-output.log"
