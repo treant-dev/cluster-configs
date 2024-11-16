@@ -1,4 +1,4 @@
-name: Deploy to Kubernetes
+name: Deploy minio
 
 on:
   workflow_dispatch:
