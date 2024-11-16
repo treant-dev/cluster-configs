@@ -6,16 +6,6 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: minio.treant.dev
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: minio-service
-                port:
-                  number: 9090
     - host: s3.treant.dev
       http:
         paths:
@@ -23,6 +13,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: s3-service
+                name: minio-service
                 port:
                   number: 9000
