@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: minio
-  namespace: minio
+  name: {{ include "_helpers-minio.name" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
-    app: minio
+    app: {{ include "_helpers-minio.name" . }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: minio
+      app: {{ include "_helpers-minio.name" . }}
   template:
     metadata:
       labels:
-        app: minio
+        app: {{ include "_helpers-minio.name" . }}
     spec:
       containers:
         - name: minio
@@ -21,11 +21,9 @@ spec:
           args:
             - server
             - /data
-          env:
-            - name: MINIO_ROOT_USER
-              value: "${MINIO_ACCESS_KEY}"
-            - name: MINIO_ROOT_PASSWORD
-              value: "${MINIO_SECRET_KEY}"
+          envFrom:
+            - secretRef:
+                name: {{ include "_helpers-minio.name" . }}
           ports:
             - containerPort: 9000
           volumeMounts:
@@ -34,4 +32,4 @@ spec:
       volumes:
         - name: storage
           persistentVolumeClaim:
-            claimName: minio-pvc
+            claimName: {{ include "_helpers-minio.name" . }}
