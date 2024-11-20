@@ -1,0 +1,16 @@
+ingress:
+  className: nginx
+  host: s3.treant.dev
+  tls:
+    secret: s3-minio
+
+
+service:
+  type: ClusterIP
+  port: 9090
+
+
+secrets:
+  minio:
+    user: user
+    password: pass
