@@ -8,3 +8,18 @@
 
 # User cluster configs
 .kubeconfig
+
+# Terraform
+*.tfvars
+*.tfvars.json
+*.auto.tfvars
+*.auto.tfvars.json
+
+*.tfstate
+*.tfstate.backup
+crash.log
+
+.terraform/
+.terraform.lock.hcl
+
+*.tfplan
