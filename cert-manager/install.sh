@@ -5,4 +5,5 @@ helm install \
   --namespace cert-manager \
   --create-namespace \
   --version v1.16.1 \
-  --set crds.enabled=true
+  --set crds.enabled=true \
+  -f cert-manager-values.yaml

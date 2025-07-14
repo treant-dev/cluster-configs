@@ -1,15 +1,13 @@
-output "k8s_master_ip" {
-  value = hcloud_server.k8s_master.ipv4_address
+output "oak_ip" {
+  value = hcloud_server.oak.ipv4_address
 }
 
-output "k8s_ingress_ip" {
-  value = hcloud_server.k8s_ingress.ipv4_address
+output "peach_ip" {
+  value = hcloud_server.peach.ipv4_address
 }
 
-output "k8s_worker_ip" {
-  value = hcloud_server.k8s_worker.ipv4_address
-}
-
-output "k8s_ingress_ipv6" {
-  value = hcloud_server.k8s_ingress.ipv6_address
+output "cherry_ips" {
+  value = [
+    for instance in hcloud_server.cherry : instance.ipv4_address
+  ]
 }

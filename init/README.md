@@ -4,7 +4,7 @@
 NODE_IP=$(curl -4 ifconfig.me)
 sudo kubeadm init \
   --apiserver-advertise-address=$NODE_IP \
-  --pod-network-cidr=10.244.0.0/16
+  --pod-network-cidr=192.168.0.0/16
 ```
 
 ```
@@ -27,7 +27,11 @@ sudo kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/ref
 ```
 # Run when worker node is ready
 ```
-kubectl label node spruce node-role.kubernetes.io/worker=""
+kubectl label node cherry-0 node-role.kubernetes.io/worker=""
 ```
 
- 
+# Mark peach as router where will be installed: ingress controller, cert manager, metallb
+```
+kubectl label node peach node-role.kubernetes.io/router=""
+kubectl taint node peach node-role.kubernetes.io/router=true:NoSchedule
+```

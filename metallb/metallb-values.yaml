@@ -1,0 +1,19 @@
+controller:
+  nodeSelector:
+    node-role.kubernetes.io/router: ""
+
+  tolerations:
+    - key: "node-role.kubernetes.io/router"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
+
+speaker:
+  tolerations:
+    - key: "node-role.kubernetes.io/router"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
+
+  nodeSelector:
+    node-role.kubernetes.io/router: ""

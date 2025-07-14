@@ -1,0 +1,26 @@
+nodeSelector:
+  node-role.kubernetes.io/router: ""
+
+tolerations:
+  - key: "node-role.kubernetes.io/router"
+    operator: "Equal"
+    value: "true"
+    effect: "NoSchedule"
+
+webhook:
+  nodeSelector:
+    node-role.kubernetes.io/router: ""
+  tolerations:
+    - key: "node-role.kubernetes.io/router"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
+
+cainjector:
+  nodeSelector:
+    node-role.kubernetes.io/router: ""
+  tolerations:
+    - key: "node-role.kubernetes.io/router"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"

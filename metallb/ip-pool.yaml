@@ -1,0 +1,8 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: ingress-ip-pool
+  namespace: metallb-system
+spec:
+  addresses:
+    - 88.198.105.140/32 # router node IP

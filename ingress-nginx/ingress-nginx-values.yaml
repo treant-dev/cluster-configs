@@ -1,0 +1,14 @@
+controller:
+  nodeSelector:
+    node-role.kubernetes.io/router: ""
+
+  tolerations:
+    - key: "node-role.kubernetes.io/router"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
+
+  service:
+    type: LoadBalancer
+    externalIPs:
+      - 88.198.105.140 # router node IP
