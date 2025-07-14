@@ -20,7 +20,7 @@ resource "hcloud_server" "oak" {
   image       = "centos-stream-10"
   location    = "nbg1"
   ssh_keys    = [data.hcloud_ssh_key.infra_ssh_key.id]
-  user_data = file("../init/centos-cloud-init.yml")
+  user_data = file(var.cloud_init_path)
 
   network {
     network_id = hcloud_network.k8s_network.id
@@ -33,7 +33,7 @@ resource "hcloud_server" "peach" {
   image       = "centos-stream-10"
   location    = "nbg1"
   ssh_keys    = [data.hcloud_ssh_key.infra_ssh_key.id]
-  user_data = file("../init/centos-cloud-init.yml")
+  user_data = file(var.cloud_init_path)
 
   network {
     network_id = hcloud_network.k8s_network.id
@@ -47,7 +47,7 @@ resource "hcloud_server" "cherry" {
   image       = "centos-stream-10"
   location    = "nbg1"
   ssh_keys    = [data.hcloud_ssh_key.infra_ssh_key.id]
-  user_data = file("../init/centos-cloud-init.yml")
+  user_data = file(var.cloud_init_path)
 
   network {
     network_id = hcloud_network.k8s_network.id
